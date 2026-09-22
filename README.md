@@ -1,4 +1,6 @@
-# Minimal Ansible project to demonstrate typical directory structure
+# Sandbox for Playing with Ansible
+
+a trival change to test the commit process
 
 ```shell
 .
