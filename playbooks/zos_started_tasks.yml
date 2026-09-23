@@ -14,13 +14,13 @@
     #        var: "{{ result.jobs }}"
     # Workaround for older versions of ibm_zos_core
 
-    - name: Query all active jobs
-      zos_job_query:
+  - name: Query all active jobs
+    ibm.ibm_zos_core.zos_job_query:
       register: active_jobs
 
-    - name: Keep only started tasks
-      set_fact:
-        started_tasks:>-
+  - name: Keep only started tasks
+    set_fact:
+      started_tasks:>-
           {{
             active_jobs.jobs
             | selectattr('job_class', 'defined')
@@ -28,9 +28,9 @@
             | list
           }}
 
-    - name: Display result
-      debug:
-        msg: "{{ started_tasks | map(attribute='job_name') | list }}" 
+  - name: Display result
+    debug:
+      msg: "{{ started_tasks | map(attribute='job_name') | list }}" 
       
      
       
