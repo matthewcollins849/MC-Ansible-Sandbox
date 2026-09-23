@@ -1,0 +1,10 @@
+---
+- name: Gather all z/OS STCs
+  hosts: zos
+  gather_facts: false
+  environment: "{{ environment_vars }}"
+
+- name: Display all started tasks.
+  zos_started_task:
+    state: "displayed"
+    job_name: "all"
