@@ -1,0 +1,22 @@
+---
+- name: Gather all available z/OS facts
+  hosts: zos
+  gather_facts: false
+  environment: "{{ environment_vars }}"
+
+  tasks:
+- name: Return all available z/OS facts.
+  ibm.ibm_zos_core.zos_gather_facts:
+
+- name: Return z/OS facts in the systems subset ('sys').
+  ibm.ibm_zos_core.zos_gather_facts:
+    gather_subset: sys
+
+- name: Return z/OS facts in the subsets ('ipl' and 'sys') and filter out all
+        facts that do not match 'parmlib'.
+  ibm.ibm_zos_core.zos_gather_facts:
+    gather_subset:
+      - ipl
+      - sys
+    filter:
+      - "*parmlib*"
