@@ -6,6 +6,6 @@
   
   tasks:
   - name: Display all started tasks.
-    zos_started_task:
+    ibm.ibm_zos_core.zos_started_task:
       state: "displayed"
       job_name: "all"
