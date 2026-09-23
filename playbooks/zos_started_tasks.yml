@@ -11,7 +11,7 @@
 
   - name: Keep only STCs
     set_fact:
-        started_task:>-
+        started_tasks:>-
       {{
         active_jobs.jobs
         | selectattr('job_class', 'defined')
@@ -21,8 +21,7 @@
   
   - name: display result
     debug:
-      msg:"{{started_tasks |
-      map(attribute='job_name') | list }}"
+      msg:"{{started_tasks | map(attribute='job_name') | list }}"
       
      
       
