@@ -7,7 +7,7 @@
   tasks:
   - name: Display all started tasks.
     ibm.ibm_zos_core.zos_job_query:
-      job_id: "*"
+      job_id: "STC*"
     register: zos_stc
   
   - name: Print return info from previous task
