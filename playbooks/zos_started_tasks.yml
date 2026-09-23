@@ -9,20 +9,20 @@
     ibm.ibm_zos_core.zos_job_query:
     register: active_jobs
 
-- name: Keep only STCs
-  set_fact:
-    started_task:>-
-    {{
-      active_jobs.jobs
-      | selectattr('job_class', 'defined')
-      | selectattr('job_class', 'equalto', 'STC')
-      | list
-    }}
+  - name: Keep only STCs
+    set_fact:
+        started_task:>-
+      {{
+        active_jobs.jobs
+        | selectattr('job_class', 'defined')
+        | selectattr('job_class', 'equalto', 'STC')
+        | list
+      }}
   
-- name: display result
-  debug:
-    msg:"{{started_tasks |
-    map(attribute='job_name') | list }}"
+  - name: display result
+    debug:
+      msg:"{{started_tasks |
+      map(attribute='job_name') | list }}"
       
      
       
