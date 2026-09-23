@@ -7,10 +7,25 @@
   tasks:
   - name: Display all started tasks.
     ibm.ibm_zos_core.zos_job_query:
-      job_id: "STC*"
-    register: zos_stc
+      
+    register: active_jobs
+
+  - name: Keep only STCs
+  set_fact:
+    started_task:>-
+    {{
+      active_jobs.jobs
+      | selectattr('job_class', 'defined')
+      | selectattr('job_class', 'equalto', 'STC')
+      | list
+    }}
   
-  - name: Print return info from previous task
-    ansible.builtin.debug:
-      var: zos_stc
+- name: display result
+  debug:
+    msg:"{{started_tasks |
+    map(attribute='job_name') | list }}"
+      
+     
+      
+    
       
