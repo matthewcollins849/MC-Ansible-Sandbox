@@ -12,8 +12,8 @@
 
   - name: Print return info from previous task
     ansible.builtin.debug:
-    var: zos_facts
-    
+      var: zos_facts
+
     
 
 
