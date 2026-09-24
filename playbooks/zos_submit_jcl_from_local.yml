@@ -13,3 +13,10 @@
       encoding:
         from: ISO8859-1
         to: IBM-037
+    register: job_output
+
+  -name: print output
+  debug:
+    var: job_output
+
+  
