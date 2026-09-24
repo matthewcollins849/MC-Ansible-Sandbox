@@ -1,21 +1,14 @@
-- name: Submit resolved JCL to z/OS
+- name: Hello World JCL job
   hosts: zoslab
   gather_facts: false
+  collections:
+    - ibm.ibm_zos_core
   environment: "{{ environment_vars }}"
-  vars:
-    job_owner: IBMUSER
-    hlq: PLAT01
-    mlq: DEV
-    libname: JCL 
-    primary_allocation: 2
-    secondary_allocation: 4 
-    jcl_path: "{{ playbook_dir }}/tmp_jcl/rendered.jcl"
-    jcl_dataset_name: "{{ job_owner }}.TEMP.JCL"
-
+ 
   tasks:
-    - name: Convert local JCL to IBM-037 and submit the job.
-      zos_job_submit:
-      src: templates/provdev.jcl.j2
+  - name: Convert local JCL to IBM-037 and submit the job.
+    zos_job_submit:
+      src: "{{ playbook_dir }}/templates/provdev.jcl.j2"
       location: local
       encoding:
         from: ISO8859-1
