@@ -15,8 +15,8 @@
         to: IBM-037
     register: job_output
 
-  -name: print output
-  debug:
+  - name: print output
+    debug:
     var: job_output
 
   
