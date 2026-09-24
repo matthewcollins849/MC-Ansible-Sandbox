@@ -15,8 +15,8 @@
 
     - name: Show job ID and return code
       debug:
-      msg: "Job {{ job_output.jobs[0].job_id }} completed RC={{ job_output.jobs[0].ret_code.msg }}"
+        msg: "Job {{ job_output.jobs[0].job_id }} completed RC={{ job_output.jobs[0].ret_code.msg }}"
 
     - name: Show spool output
       debug:
-      msg: "{{ job_output.jobs[0].ddnames | map(attribute='content') | list }}"
+        msg: "{{ job_output.jobs[0].ddnames | map(attribute='content') | list }}"
