@@ -9,7 +9,7 @@
     - name: Submit JCL from PDS member
       zos_job_submit:
         src: IBMUSER.LAB.JCL(HELLO)
-        location: data_set
+        location: DATA_SET
 
       register: job_output
 
