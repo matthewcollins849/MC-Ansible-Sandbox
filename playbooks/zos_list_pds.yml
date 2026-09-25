@@ -1,4 +1,4 @@
-- name: List members of SYS1.PARMLIB
+- name: List members in SYS1.PARMLIB
   hosts: zoslab
   gather_facts: false
   collections:
@@ -7,11 +7,11 @@
 
   tasks:
   - name: Execute TSO command List Dataset (LISTDSD) and allow for maximum return code of 4.
-  zos_tso_command:
-    commands:
-      - LISTDSD DATASET('SYS1.PARMLIB') ALL GENERIC
-    max_rc: 4
-    register: result
+    zos_tso_command:
+      commands:
+        - LISTDSD DATASET('SYS1.PARMLIB') ALL GENERIC
+      max_rc: 4
+  register: result
 
 - name: Display result
   debug:
