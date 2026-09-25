@@ -11,8 +11,8 @@
       commands:
         - LISTDSD DATASET('SYS1.PARMLIB') ALL GENERIC
       max_rc: 4
-  register: result
+    register: result
 
-- name: Display result
-  debug:
-    msg: "{{ result }}"
+  - name: Display result
+    debug:
+      msg: "{{ result }}"
