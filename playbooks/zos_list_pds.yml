@@ -6,13 +6,13 @@
   environment: "{{ environment_vars }}"
 
   tasks:
+    - name: Execute TSO command List Dataset (LISTDSD) and allow for maximum return code of 4.
+  zos_tso_command:
+    commands:
+      - LISTDSD DATASET('SYS1.PARMLIB') ALL GENERIC
+    max_rc: 4
+    register: result
 
-    - name: List members in "{{ pds }}"
-      zos_tso_command:
-        commands:
-          - "LISTDS '{{ pds }}' MEMBERS"
-      register: result
-
-    - name: Display result
-      debug:
-        msg: "{{ result }}"
+- name: Display result
+  debug:
+    msg: "{{ result }}"
