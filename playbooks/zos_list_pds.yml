@@ -1,4 +1,4 @@
-- name: List members of SYS.PARMLIB
+- name: List members of SYS1.PARMLIB
   hosts: zoslab
   gather_facts: false
   collections:
@@ -6,7 +6,7 @@
   environment: "{{ environment_vars }}"
 
   tasks:
-    - name: Execute TSO command List Dataset (LISTDSD) and allow for maximum return code of 4.
+  - name: Execute TSO command List Dataset (LISTDSD) and allow for maximum return code of 4.
   zos_tso_command:
     commands:
       - LISTDSD DATASET('SYS1.PARMLIB') ALL GENERIC
