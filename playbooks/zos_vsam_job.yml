@@ -1,0 +1,22 @@
+- name: Create VSAM KSDS data set
+  hosts: zoslab
+  gather_facts: false
+  collections:
+    - ibm.ibm_zos_core
+  environment: "{{ environment_vars }}"
+
+  tasks:
+    - name: Submit JCL from PDS member
+      zos_job_submit:
+        src: IBMUSER.JCL(DEFKSDS)
+        location: DATA_SET
+
+      register: job_output
+
+    - name: Show job ID and return code
+      debug:
+        msg: "Job {{ job_output.jobs[0].job_id }} completed RC={{ job_output.jobs[0].ret_code.msg }}"
+
+    - name: Show spool output
+      debug:
+        msg: "{{ job_output.jobs[0].ddnames | map(attribute='content') | list }}"
